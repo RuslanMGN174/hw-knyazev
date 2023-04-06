@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+}
+
+.code {
+    width: 30%;
+    height: 100vh;
+}
+
+div {
+    margin: 10px 0;
+}
