@@ -3,8 +3,17 @@
 :root {
     --header-height: 60px;
     --grid-gap: 1px;
-    --bg-color: #2d2e2a;
+    --bg-color: #f4f4f4;
+    --ft-color: #373737;
     --el-height: calc(100vh - var(--header-height) - (var(--grid-gap)));
+}
+
+/*Темный режим на уровне операционной системы / браузера*/
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #2d2e2a;
+        --ft-color: lightgray;
+    }
 }
 
 body {
@@ -17,11 +26,19 @@ body {
     grid-template-rows: 7vh 1fr;
     grid-template-columns: 30% 1fr;
     margin: 0;
+    font-family: 'Roboto', sans-serif;
+    border: none;
+    color: var(--ft-color);
+    background: var(--bg-color);
+}
+
+body.dark-theme {
+    --bg-color: #2d2e2a;
+    --ft-color: lightgray;
 }
 
 header, nav, .information {
     padding: 1vh;
-    background: var(--bg-color);
 }
 
 header {
@@ -42,7 +59,6 @@ header {
 
 .container-flex {
     grid-area: flex;
-    background-color: var(--bg-color);
     display: flex;
     justify-content: center;
     padding: 0.5vh 0;
@@ -51,7 +67,6 @@ header {
 
 .container-grid {
     grid-area: grid;
-    background-color: var(--bg-color);
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
@@ -69,14 +84,14 @@ header {
     text-decoration: none;
     font-weight: 700;
     padding: 10px;
-    color: lightgray;
+    color: var(--ft-color);;
 }
 
 .header-link:visited {
     text-decoration: none;
     font-weight: 700;
     padding: 10px;
-    color: lightgray;
+    color: var(--ft-color);;
 }
 
 .header-link:hover {
@@ -109,10 +124,4 @@ header {
 .personalInfo, .feedback {
     padding: 1vh;
     margin: 1vh;
-}
-
-h1, .header-link, .about, .feedback {
-    font-family: 'Roboto', sans-serif;
-    border: none;
-    color: lightgray;
 }
