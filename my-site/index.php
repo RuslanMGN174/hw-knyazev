@@ -1,16 +1,17 @@
 <?php
-$refreshTime = 0;
-header("refresh: 3;");
-date_default_timezone_set('UTC');
 
+include "./src/php/themetoggle.php";
+include "./src/php/refreshtime.php";
+
+date_default_timezone_set('UTC');
 $timeCurrent = date("h:i:s");
 $timeNightStart = date("17:00:00");
 $timeNightEnd = date("03:00:00");
 
-$themeClass = '';
-if ($timeCurrent >= $timeNightStart || $timeCurrent < $timeNightEnd) {
-    $themeClass = 'dark-theme';
-}
+$refreshTime = getRefreshTime($timeCurrent, $timeNightStart, $timeNightEnd);
+header("refresh: $refreshTime");
+
+$themeClass = getThemeClass($timeCurrent, $timeNightStart, $timeNightEnd);
 ?>
 
 <!doctype html>
@@ -20,7 +21,6 @@ if ($timeCurrent >= $timeNightStart || $timeCurrent < $timeNightEnd) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!--    <meta http-equiv="refresh" content="10">-->
     <title>Document</title>
     <link rel="stylesheet" href="./src/styles/styles.css">
     <link rel="stylesheet" href="./src/styles/flex-grid.css">
