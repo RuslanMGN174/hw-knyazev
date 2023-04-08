@@ -8,10 +8,10 @@ $timeCurrent = date("h:i:s");
 $timeNightStart = date("17:00:00");
 $timeNightEnd = date("03:00:00");
 
-$refreshTime = getRefreshTime($timeCurrent, $timeNightStart, $timeNightEnd);
-header("refresh: $refreshTime");
-
 $themeClass = getThemeClass($timeCurrent, $timeNightStart, $timeNightEnd);
+$refreshTime = getRefreshTime($timeCurrent, $timeNightStart, $timeNightEnd);
+
+header("refresh: $refreshTime");
 ?>
 
 <!doctype html>
