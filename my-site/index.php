@@ -15,11 +15,10 @@ header("refresh: $refreshTime");
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="./src/styles/styles.css">
@@ -52,7 +51,7 @@ header("refresh: $refreshTime");
         <a class="header-link" href="#grid">Любимые фильмы</a>
     </div>
 </header>
-<section class="main">
+<div class="main">
     <nav class="photoFrame">
         <div class="photo">
             <img src="./src/images/photo.jpg" alt="My photo could be there">
@@ -60,7 +59,7 @@ header("refresh: $refreshTime");
     </nav>
     <section class="information">
         <div class="fio">
-            <h1>Князев Руслан</h1>
+            <h2>Князев Руслан</h2>
         </div>
         <div class="info">
             <div class="personalInfo">
@@ -96,8 +95,8 @@ header("refresh: $refreshTime");
             </div>
         </div>
     </section>
-</section>
-<section id="flex" class="container-flex">
+</div>
+<div id="flex" class="container-flex">
     <div class="fvrt-books">
         <div class="title">
             <h1>Любимые книги</h1>
@@ -166,8 +165,8 @@ header("refresh: $refreshTime");
             </div>
         </div>
     </div>
-</section>
-<section id="grid" class="container-grid">
+</div>
+<div id="grid" class="container-grid">
     <div class="fvrt-film">
         <div class="film">
             <div class="title">
@@ -250,7 +249,7 @@ header("refresh: $refreshTime");
             </div>
         </div>
     </div>
-</section>
+</div>
 
 </body>
 </html>
