@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @param string $timeCurrent
- * @param string $timeNightStart
- * @param string $timeNightEnd
- * @return int
- */
 function getRefreshTime(string $timeCurrent, string $timeNightStart, string $timeNightEnd): int
 {
     if ($timeCurrent >= $timeNightStart) {
