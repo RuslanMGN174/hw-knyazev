@@ -84,8 +84,8 @@
                 <label>
                     Введите положительное число <input type="number" name="task6Number">
                 </label>
-                <input name="direction" type="radio" value="straight">По возрастанию
-                <input name="direction" type="radio" value="reverse"> По убыванию
+                <label><input name="direction" type="radio" value="straight">По возрастанию</label>
+                <label><input name="direction" type="radio" value="reverse"> По убыванию</label>
                 <input type="submit" value="Send" autofocus>
             </form>
         </div>
