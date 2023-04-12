@@ -6,6 +6,7 @@ include "./php/task2.php";
 include "./php/task3.php";
 include "./php/task4.php";
 include "./php/task5.php";
+include "./php/task6.php";
 ?>
 
 <!doctype html>
@@ -116,6 +117,26 @@ include "./php/task5.php";
         </div>
         <div class="answer">
             <?php printArray(arraySumAndAVG()); ?>
+        </div>
+    </div>
+    <hr>
+</div>
+<div>
+    <div>
+        <p class="taskTitle">Задание 6.<br></p>
+        Известна среднемесячная температура воздуха на следующих островах Карибского моря:
+        Куба, Тринидад, Ямайка, Гаити.
+        Сформировать один новый массив, содержащий месяц и максимальную температуру для островов.
+        <p class="taskTitle">Решение:<br></p>
+    </div>
+    <div class="container">
+        <div class="task">
+            <?php
+            $islands = ['Куба', 'Тринидад', 'Ямайка', 'Гаити'];
+            printArray(monthTempInIslands($islands));
+            ?>
+        </div>
+        <div class="answer">
         </div>
     </div>
     <hr>
