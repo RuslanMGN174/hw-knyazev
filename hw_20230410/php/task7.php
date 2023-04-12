@@ -20,12 +20,12 @@ function initArr(): array
 
 function getArrColumn(array $arr, int $column): array
 {
-    $columnNumber = max($column, 0);
+    $columnNumber = ($column - 1) < 0 ? 0 : $column - 1;
     $arrTemp = [];
     foreach ($arr as $row) {
         foreach ($row as $columnKey => $columnValue) {
-            if ($columnKey == $columnNumber - 1) {
-                array_push($arrTemp, $columnValue);
+            if ($columnKey == $columnNumber) {
+                $arrTemp[] = $columnValue;
             }
         }
 
