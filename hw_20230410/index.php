@@ -7,6 +7,7 @@ include "./php/task3.php";
 include "./php/task4.php";
 include "./php/task5.php";
 include "./php/task6.php";
+include "./php/task7.php";
 ?>
 
 <!doctype html>
@@ -134,6 +135,28 @@ include "./php/task6.php";
             <?php
             $islands = ['Куба', 'Тринидад', 'Ямайка', 'Гаити'];
             printArray(monthTempInIslands($islands));
+            ?>
+        </div>
+        <div class="answer">
+        </div>
+    </div>
+    <hr>
+</div>
+<div>
+    <div>
+        <p class="taskTitle">Задание 7.<br></p>
+        Дан двумерный массив из 5 строк и 6 столбцов.
+        Определить для каждого четного столбца максимальный элемент.
+        Найти произведение этих элементов.
+        <p class="taskTitle">Решение:<br></p>
+    </div>
+    <div class="container">
+        <div class="task">
+            <?php
+            $task7arr = initArr();
+            printMultiArray($task7arr);
+            echo "<br>";
+            printAnswer($task7arr);
             ?>
         </div>
         <div class="answer">
