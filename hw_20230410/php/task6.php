@@ -6,13 +6,13 @@
  * Сформировать один новый массив, содержащий месяц и максимальную температуру для островов.
  */
 
-$islands = ["Куба", "Тринидад", "Ямайка", "Гаити"];
 
-function monthTempInIslands($array): array
+function monthTempInIslands(): array
 {
     $monthTemp = [];
+    $islands = ["Куба", "Тринидад", "Ямайка", "Гаити"];
     $months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
-    foreach ($array as $island) {
+    foreach ($islands as $island) {
         $monthTemp[$island] = tempByMonths($months);
     }
     return $monthTemp;

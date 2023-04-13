@@ -133,8 +133,8 @@ include "./php/task7.php";
     <div class="container">
         <div class="task">
             <?php
-            $islands = ['Куба', 'Тринидад', 'Ямайка', 'Гаити'];
-            printArray(monthTempInIslands($islands));
+//            $islands = ['Куба', 'Тринидад', 'Ямайка', 'Гаити'];
+            printArray(monthTempInIslands());
             ?>
         </div>
         <div class="answer">
