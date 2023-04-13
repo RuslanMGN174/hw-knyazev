@@ -12,8 +12,8 @@ function monthTempInIslands(): array
     $monthTemp = [];
     $islands = ["Куба", "Тринидад", "Ямайка", "Гаити"];
     $months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
-    foreach ($islands as $island) {
-        $monthTemp[$island] = tempByMonths($months);
+    foreach ($months as $temp) {
+        $monthTemp[$temp] = tempByMonths($islands);
     }
     return $monthTemp;
 }
