@@ -1,0 +1,22 @@
+body {
+    background-color: #f4f4f4;;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    border: none;
+}
+
+.container {
+    display: flex;
+}
+
+.taskTitle {
+    font-weight: 700;
+}
+
+.answer {
+    margin:0 40px;
+}
+
+p {
+    margin: 20px 0 5px;
+}
