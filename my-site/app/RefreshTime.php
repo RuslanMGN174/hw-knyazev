@@ -1,6 +1,6 @@
 <?php
 
-namespace Php;
+namespace App;
 
 class RefreshTime
 {

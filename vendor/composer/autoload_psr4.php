@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Php\\' => array($baseDir . '/my-site/app/php'),
+    'App\\' => array($baseDir . '/my-site/app'),
 );

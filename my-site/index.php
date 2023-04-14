@@ -2,8 +2,8 @@
 
 require_once("../vendor/autoload.php");
 
-use Php\RefreshTime;
-use Php\ThemeToggle;
+use App\RefreshTime;
+use App\ThemeToggle;
 
 $themeToggle = new ThemeToggle();
 $time = new RefreshTime();
