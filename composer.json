@@ -1,0 +1,19 @@
+{
+  "name": "vendor_name/hw-knyazev",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "knyazev.r",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Php\\": "my-site/app/php"
+    }
+  }
+}

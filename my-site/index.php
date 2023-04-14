@@ -1,15 +1,20 @@
 <?php
 
-include "./src/php/themetoggle.php";
-include "./src/php/refreshtime.php";
+require_once("../vendor/autoload.php");
+
+use Php\RefreshTime;
+use Php\ThemeToggle;
+
+$themeToggle = new ThemeToggle();
+$time = new RefreshTime();
 
 date_default_timezone_set('UTC');
 $timeCurrent = date("h:i:s");
 $timeNightStart = date("17:00:00");
 $timeNightEnd = date("03:00:00");
 
-$themeClass = getThemeClass($timeCurrent, $timeNightStart, $timeNightEnd);
-$refreshTime = getRefreshTime($timeCurrent, $timeNightStart, $timeNightEnd);
+$themeClass = $themeToggle->getThemeClass($timeCurrent, $timeNightStart, $timeNightEnd);
+$refreshTime = $time->getRefreshTime($timeCurrent, $timeNightStart, $timeNightEnd);
 
 header("refresh: $refreshTime");
 ?>
@@ -21,12 +26,12 @@ header("refresh: $refreshTime");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="./src/styles/styles.css">
-    <link rel="stylesheet" href="./src/styles/flex-grid.css">
-    <link rel="stylesheet" href="./src/styles/adaptive_360.css">
-    <link rel="stylesheet" href="./src/styles/adaptive_361_576.css">
-    <link rel="stylesheet" href="./src/styles/adaptive_577_768.css">
-    <link rel="stylesheet" href="./src/styles/adaptive_769_1200.css">
+    <link rel="stylesheet" href="src/styles/styles.css">
+    <link rel="stylesheet" href="src/styles/flex-grid.css">
+    <link rel="stylesheet" href="src/styles/adaptive_360.css">
+    <link rel="stylesheet" href="src/styles/adaptive_361_576.css">
+    <link rel="stylesheet" href="src/styles/adaptive_577_768.css">
+    <link rel="stylesheet" href="src/styles/adaptive_769_1200.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -54,7 +59,7 @@ header("refresh: $refreshTime");
 <div class="main">
     <nav class="photoFrame">
         <div class="photo">
-            <img src="./src/images/photo.jpg" alt="My photo could be there">
+            <img src="src/images/photo.jpg" alt="My photo could be there">
         </div>
     </nav>
     <section class="information">
@@ -104,7 +109,7 @@ header("refresh: $refreshTime");
         <div class="container2">
             <div class="book book1">
                 <div class="cover">
-                    <img src="./src/images/cover/book/seagull-book.jpg" alt="Обложка книги 'Чайка'">
+                    <img src="src/images/cover/book/seagull-book.jpg" alt="Обложка книги 'Чайка'">
                 </div>
                 <div class="description">
                     <p><strong>Рождённый чайкой может стать соколом</strong></p>
@@ -119,7 +124,7 @@ header("refresh: $refreshTime");
             </div>
             <div class="book book2">
                 <div class="cover">
-                    <img src="./src/images/cover/book/star_kings-book.jpg" alt="Обложка книги 'Звездные короли'">
+                    <img src="src/images/cover/book/star_kings-book.jpg" alt="Обложка книги 'Звездные короли'">
                 </div>
                 <div class="description">
                     <p>Знал ли Джон Гордон, обычный американский клерк, чем это обернется для него, когда впервые
@@ -140,7 +145,7 @@ header("refresh: $refreshTime");
         <div class="container2">
             <div class="game game1">
                 <div class="cover">
-                    <img src="./src/images/cover/game/dota-game.jpg" alt="Обложка игры 'Дота2'">
+                    <img src="src/images/cover/game/dota-game.jpg" alt="Обложка игры 'Дота2'">
                 </div>
                 <div class="description">
                     <p><strong>Самая популярная игра в Steam</strong></p>
@@ -156,7 +161,7 @@ header("refresh: $refreshTime");
             </div>
             <div class="game game2">
                 <div class="cover">
-                    <img src="./src/images/cover/game/star_craft.jpg" alt="Обложка игры 'Star Craft'">
+                    <img src="src/images/cover/game/star_craft.jpg" alt="Обложка игры 'Star Craft'">
                 </div>
                 <div class="description">
                     <p>Три расы, четыре режима и бесконечное множество игровых стилей. StarCraft II — венец развития
@@ -173,7 +178,7 @@ header("refresh: $refreshTime");
                 <h1>Игра</h1>
             </div>
             <div class="cover">
-                <img src="./src/images/cover/film/game-film.jpg" alt="Обложка фильма 'Игра'">
+                <img src="src/images/cover/film/game-film.jpg" alt="Обложка фильма 'Игра'">
             </div>
             <div class="film-description">
                 <p>
@@ -194,7 +199,7 @@ header("refresh: $refreshTime");
                 <h1>Хакеры</h1>
             </div>
             <div class="cover">
-                <img src="./src/images/cover/film/hakers-film.jpg" alt="Обложка фильма 'Хакеры'">
+                <img src="src/images/cover/film/hakers-film.jpg" alt="Обложка фильма 'Хакеры'">
             </div>
             <div class="film-description">
                 <p>
@@ -216,7 +221,7 @@ header("refresh: $refreshTime");
                 <h1>Трасса 60</h1>
             </div>
             <div class="cover">
-                <img src="./src/images/cover/film/Interstate_60.jpg" alt="Обложка фильма 'Трасса 60'">
+                <img src="src/images/cover/film/Interstate_60.jpg" alt="Обложка фильма 'Трасса 60'">
             </div>
             <div class="film-description">
                 <p>
@@ -238,7 +243,7 @@ header("refresh: $refreshTime");
                 <h1>Звёздные войны</h1>
             </div>
             <div class="cover">
-                <img src="./src/images/cover/film/star_wars-film.jpg" alt="Обложка фильма 'Звёздные войны'">
+                <img src="src/images/cover/film/star_wars-film.jpg" alt="Обложка фильма 'Звёздные войны'">
             </div>
             <div class="film-description">
                 <p>
