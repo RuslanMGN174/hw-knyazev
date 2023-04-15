@@ -2,7 +2,7 @@
 
 //use DateTime
 $date1 = new DateTime();;
-$date2 = DateTime::createFromFormat("d-m-y", "17-04-23");
+$date2 = DateTime::createFromFormat("d-m-Y", "22-10-1983");
 $interval = $date1->diff($date2);
 
-echo $interval->days . "\n";
+echo "Со дня моего рождения прошло " . $interval->days . " дней";
