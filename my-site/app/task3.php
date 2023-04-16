@@ -1,5 +1,4 @@
 <?php
-
 setlocale(LC_ALL, "ru_RU.UTF-8");
 
 //читаем файл Index.php в строку
@@ -17,8 +16,7 @@ function getParseStr(string $filePath): string
     return $str;
 }
 
-$str = getParseStr("../../my-site/index.php");
-
+$str = getParseStr("../my-site/app/index_copy.php");
 //позиция начала текста (все после php кода)
 $position = mb_strpos($str, "Л") . "\n";
 
@@ -45,5 +43,5 @@ $regexp = "/[аеёиоуыэюя]/iu";
 
 $count = preg_match_all($regexp, $str);
 
-echo "Количество слов - " . sizeof($arr) . "\n";
-echo "Количество гласных - " . $count . "\n";
+echo "Количество слов на сайте - " . sizeof($arr) . "<br>";
+echo "Количество гласных в этих словах - " . $count . "<br>";
