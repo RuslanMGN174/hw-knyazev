@@ -1,24 +1,3 @@
-<?php
-
-require_once("../vendor/autoload.php");
-
-use App\RefreshTime;
-use App\ThemeToggle;
-
-$themeToggle = new ThemeToggle();
-$time = new RefreshTime();
-
-date_default_timezone_set('UTC');
-$timeCurrent = date("h:i:s");
-$timeNightStart = date("17:00:00");
-$timeNightEnd = date("03:00:00");
-
-$themeClass = $themeToggle->getThemeClass($timeCurrent, $timeNightStart, $timeNightEnd);
-$refreshTime = $time->getRefreshTime($timeCurrent, $timeNightStart, $timeNightEnd);
-
-header("refresh: $refreshTime");
-?>
-
 <!doctype html>
 <html lang="ru">
 <head>
@@ -26,29 +5,8 @@ header("refresh: $refreshTime");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="src/styles/styles.css">
-    <link rel="stylesheet" href="src/styles/flex-grid.css">
-    <link rel="stylesheet" href="src/styles/adaptive_360.css">
-    <link rel="stylesheet" href="src/styles/adaptive_361_576.css">
-    <link rel="stylesheet" href="src/styles/adaptive_577_768.css">
-    <link rel="stylesheet" href="src/styles/adaptive_769_1200.css">
-    <link rel="stylesheet" href="src/styles/adaptive_769_1200.css">
-    <link rel="stylesheet" href="src/styles/temp.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('a[href*=#]').bind("click", function (e) {
-                var anchor = $(this);
-                $('html, body').stop().animate({
-                    scrollTop: $(anchor.attr('href')).offset().top
-                }, 1000);
-                e.preventDefault();
-            });
-            return false;
-        });
-    </script>
 </head>
-<body id="top" class="<?php echo $themeClass; ?>">
+<body id="top">
 <header class="header">
     <div class="logo"></div>
     <div class="link">
@@ -72,23 +30,21 @@ header("refresh: $refreshTime");
             <div class="personalInfo">
                 <p class="about">
                     <?php include "../my-site/app/task1.php"?>
-<!--                    Добрый день! Немного расскажу о себе. Работаю руководителем по ВЭД. Дополнительно я развиваю и-->
-<!--                    поддерживаю-->
-<!--                    корпоративный портал Bitrix24 в компании, в которой работаю.-->
-<!--                    Я начинающий разработчик, развиваюсь и буду продолжать развиваться в IT сфере. У меня нет опыта-->
-<!--                    коммерческой-->
-<!--                    разработки, есть только учебный, а еще у меня богатый опыт и много полезных компетенций в других-->
-<!--                    областях.-->
-<!--                    На текущем месте работы мой руководитель часто отмечает разносторонний и иногда не стандартный-->
-<!--                    взгляд на-->
-<!--                    решение задач.-->
-<!--                    Выучился на JS-разработчика в Skillbox, поэтому немного умею в React. Заканчиваю факультет-->
-<!--                    Java-разработки в-->
-<!--                    Geekbrains, пишем интернет-магазин на Spring (будет pet-проект), учился Java на курсах JavaRush.-->
-<!--                    Быстро учусь и очень хочу работать и расти профессионально в IT.-->
+                    Добрый день! Немного расскажу о себе. Работаю руководителем по ВЭД. Дополнительно я развиваю и
+                    поддерживаю
+                    корпоративный портал Bitrix24 в компании, в которой работаю.
+                    Я начинающий разработчик, развиваюсь и буду продолжать развиваться в IT сфере. У меня нет опыта
+                    коммерческой
+                    разработки, есть только учебный, а еще у меня богатый опыт и много полезных компетенций в других
+                    областях.
+                    На текущем месте работы мой руководитель часто отмечает разносторонний и иногда не стандартный
+                    взгляд на
+                    решение задач.
+                    Выучился на JS-разработчика в Skillbox, поэтому немного умею в React. Заканчиваю факультет
+                    Java-разработки в
+                    Geekbrains, пишем интернет-магазин на Spring (будет pet-проект), учился Java на курсах JavaRush.
+                    Быстро учусь и очень хочу работать и расти профессионально в IT.
                 </p>
-                <div><?php include "../my-site/app/task4.php"?></div>
-                <div><?php include "../my-site/app/task3.php"?></div>
             </div>
             <div class="feedback">
                 <p>
