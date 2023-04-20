@@ -14,7 +14,7 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "my-site/app/"
+      "App\\": "my-site/app/php"
     }
   }
 }

@@ -5,18 +5,14 @@ require_once("../vendor/autoload.php");
 use App\RefreshTime;
 use App\ThemeToggle;
 
-$themeToggle = new ThemeToggle();
-$time = new RefreshTime();
-
 date_default_timezone_set('UTC');
-$timeCurrent = date("h:i:s");
 $timeNightStart = date("17:00:00");
 $timeNightEnd = date("03:00:00");
 
-$themeClass = $themeToggle->getThemeClass($timeCurrent, $timeNightStart, $timeNightEnd);
-$refreshTime = $time->getRefreshTime($timeCurrent, $timeNightStart, $timeNightEnd);
+$time = new RefreshTime($timeNightStart, $timeNightEnd);
+$themeToggle = new ThemeToggle($timeNightStart, $timeNightEnd);
 
-header("refresh: $refreshTime");
+header("refresh: {$time->getRefreshTime()}");
 ?>
 
 <!doctype html>
@@ -34,20 +30,9 @@ header("refresh: $refreshTime");
     <link rel="stylesheet" href="src/styles/adaptive_769_1200.css">
     <link rel="stylesheet" href="src/styles/adaptive_769_1200.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('a[href*=#]').bind("click", function (e) {
-                var anchor = $(this);
-                $('html, body').stop().animate({
-                    scrollTop: $(anchor.attr('href')).offset().top
-                }, 1000);
-                e.preventDefault();
-            });
-            return false;
-        });
-    </script>
+    <script src="app/js/scroll.js"></script>
 </head>
-<body id="top" class="<?php echo $themeClass; ?>">
+<body id="top" class="<?php echo $themeToggle->getThemeClass(); ?>">
 <header class="header">
     <div class="logo"></div>
     <div class="link">
