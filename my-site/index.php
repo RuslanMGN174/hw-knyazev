@@ -22,13 +22,14 @@ header("refresh: {$time->getRefreshTime()}");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
     <link rel="stylesheet" href="src/styles/styles.css">
     <link rel="stylesheet" href="src/styles/flex-grid.css">
     <link rel="stylesheet" href="src/styles/adaptive_360.css">
     <link rel="stylesheet" href="src/styles/adaptive_361_576.css">
     <link rel="stylesheet" href="src/styles/adaptive_577_768.css">
     <link rel="stylesheet" href="src/styles/adaptive_769_1200.css">
-    <link rel="stylesheet" href="src/styles/adaptive_769_1200.css">
+    <link rel="stylesheet" href="src/styles/registration.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="app/js/scroll.js"></script>
 </head>
@@ -40,6 +41,12 @@ header("refresh: {$time->getRefreshTime()}");
     </div>
     <div class="link">
         <a class="header-link" href="#grid">Любимые фильмы</a>
+    </div>
+    <div class="link">
+        <a class="header-link" href="app/php/authorization.php">Авторизация</a>
+    </div>
+    <div class="link">
+        <a class="header-link" href="app/php/registration.php">Регистрация</a>
     </div>
 </header>
 <div class="main">
