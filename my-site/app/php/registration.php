@@ -42,9 +42,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-center">
-                                    <button type="button"
-                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
-                                        Register
+                                    <button type="button" class="btn btn-primary btn-block mb-4">Register
                                     </button>
                                 </div>
 
