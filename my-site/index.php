@@ -49,7 +49,7 @@ function getBgColor(): string
     <script src="app/js/scroll.js"></script>
 </head>
 <body id="top" class="<?php echo $themeToggle->getThemeClass(); ?>"
-      style="<?php echo "background: " . (getBgColor() ?? $_COOKIE["bg-color"]) ?>">
+      style="<?php echo "background: " . (isset($_GET["bg-color"]) ? getBgColor() : $_COOKIE["bg-color"]) ?>">
 <header class="header">
     <div class="logo"></div>
     <div class="link">
