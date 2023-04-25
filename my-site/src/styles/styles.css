@@ -80,6 +80,14 @@ header {
     width: 250px;
 }
 
+.sl-link {
+    text-align: center;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    width: 400px;
+}
+
 .header-link {
     text-decoration: none;
     font-weight: 700;

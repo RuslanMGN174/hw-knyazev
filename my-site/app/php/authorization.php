@@ -1,20 +1,37 @@
 <?php
 
+session_start();
+
 $usersArray = ["John" => md5("123"), "Bill" => md5("234")];
 
+// проверяем соответствие введенного логина и пароля с данными в массиве
 if (isset($_POST["login"]) && isset($_POST["password"])) {
     $login = $_POST["login"];
     $pass = md5($_POST["password"]);
     if (array_key_exists($login, $usersArray) && $usersArray[$login] == $pass) {
         $_POST["password"] = $pass;
         header('Location: ' . 'sayHello.php?login=' . $login);
-//        exit();
     } else {
         echo "<b>Логин или пароль указаны не верно</b>";
         echo "<br>";
         echo "<br>";
     }
 }
+
+// настройка реферера и куки
+if (isset($_GET["act"])) {
+    $url = match ($_GET["act"]) {
+        "fact" => "https://academy.fact.digital/",
+        "bitrix" => "https://www.bitrix24.ru/"
+    };
+    setcookie("lastVisitedSite", $url, time() + 3600);
+    header("Location: $url");
+    exit();
+}
+
+// удаляем сессию при помощи специальной функции
+session_destroy();
+
 ?>
 
 <!doctype html>
@@ -57,13 +74,17 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+                                <input type="submit" class="btn btn-primary btn-block mb-4" name="submit"
+                                       value="Sign in">
 
                                 <div class="text-center">
                                     <p>Not a member? <a href="registration.php">Register</a></p>
                                 </div>
                             </form>
-
+                            <div class="text-center">
+                                <a href="?act=fact">Факт Академия</a>
+                                <a href="?act=bitrix">Bitrix24</a>
+                            </div>
                         </div>
                     </div>
                 </div>
