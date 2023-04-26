@@ -4,25 +4,22 @@ session_start();
 $time = date('j F Y h:i:s');
 setcookie("lastVisitTime", $time, time() + 3600);
 
-$_SESSION["currentTime"] = $time;
-
-// количество секунд с момента входа на сайт
-function getSeconds(): int
-{
-    if (isset($_SESSION["currentTime"]) && isset($_COOKIE["lastVisitTime"])) {
-        $time1 = $_SESSION["currentTime"];
-        $time2 = $_COOKIE["lastVisitTime"];
-        return strtotime($time1) - strtotime($time2);// разница в секундах
-    } else {
-        return 0;
-    }
+// Session.Task2 и Task3
+if (!isset($_SESSION["currentTime"])) {
+    $_SESSION["currentTime"] = $time;
 }
 
+function getSeconds($time): int
+{
+    return strtotime($time) - strtotime($_SESSION["currentTime"]);
+}
 
+// Cookie.Task2
 if (isset($_GET["login"])) {
     setcookie("login", $_GET["login"], time() + 3600);
 }
 
+// Cookie.Task3
 if (!isset($_COOKIE["counter"])) $_COOKIE["counter"] = 0;
 $_COOKIE["counter"]++;
 setcookie("counter", $_COOKIE["counter"], 0x6FFFFFFF);
@@ -30,7 +27,7 @@ setcookie("counter", $_COOKIE["counter"], 0x6FFFFFFF);
 function printLastVisitTime(): void
 {
     if (isset($_GET["login"]) && $_GET["login"] != '' && isset($_COOKIE["lastVisitTime"])) {
-        echo $_GET["login"] . ", your last visit time at " . $_COOKIE["lastVisitTime"];
+        echo $_COOKIE["login"] . ", your last visit time at " . $_COOKIE["lastVisitTime"];
     }
 }
 
@@ -94,7 +91,7 @@ function printLastVisitTime(): void
 </div>
 <div>
     <h4 style="color: red">
-        <?php echo getSeconds() . " seconds have passed since you entered the site" ?>
+        <?php echo getSeconds($time) . " seconds have passed since you entered the site" . "<br>" ?>
     </h4>
 </div>
 <hr>
