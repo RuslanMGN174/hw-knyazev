@@ -13,6 +13,23 @@ $time = new RefreshTime($timeNightStart, $timeNightEnd);
 $themeToggle = new ThemeToggle($timeNightStart, $timeNightEnd);
 
 header("refresh: {$time->getRefreshTime()}");
+
+// background color for body
+function getBgColor(): string
+{
+    $color = "";
+    if (isset($_GET["bg-color"])) {
+        $color = match ($_GET["bg-color"]) {
+            "Pink" => "Pink",
+            "Lavender" => "Lavender",
+            "LightYellow" => "LightYellow",
+            "PaleGreen" => "PaleGreen"
+        };
+        setcookie("bg-color", $color, time() + 3600 * 24 * 7);
+    }
+    return $color;
+}
+
 ?>
 
 <!doctype html>
@@ -31,7 +48,8 @@ header("refresh: {$time->getRefreshTime()}");
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="app/js/scroll.js"></script>
 </head>
-<body id="top" class="<?php echo $themeToggle->getThemeClass(); ?>">
+<body id="top" class="<?php echo $themeToggle->getThemeClass(); ?>"
+      style="<?php echo "background: " . (isset($_GET["bg-color"]) ? getBgColor() : $_COOKIE["bg-color"]) ?>">
 <header class="header">
     <div class="logo"></div>
     <div class="link">
@@ -45,6 +63,19 @@ header("refresh: {$time->getRefreshTime()}");
     </div>
     <div class="link">
         <a class="header-link" href="app/php/registration.php">Регистрация</a>
+    </div>
+    <div class="sl-link">
+        <form>
+            <label>Цвет фона
+                <select name="bg-color">
+                    <option value="Pink">Pink</option>
+                    <option value="Lavender">Lavender</option>
+                    <option value="LightYellow">LightYellow</option>
+                    <option value="PaleGreen">PaleGreen</option>
+                </select>
+            </label>
+            <input type="submit" value="Применить">
+        </form>
     </div>
 </header>
 <div class="main">
