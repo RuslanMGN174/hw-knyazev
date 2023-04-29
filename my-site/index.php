@@ -1,35 +1,14 @@
 <?php
-
+session_start();
 require_once("../vendor/autoload.php");
 
-use App\RefreshTime;
-use App\ThemeToggle;
-
-date_default_timezone_set('UTC');
-$timeNightStart = date("17:00:00");
-$timeNightEnd = date("03:00:00");
-
-$time = new RefreshTime($timeNightStart, $timeNightEnd);
-$themeToggle = new ThemeToggle($timeNightStart, $timeNightEnd);
-
-header("refresh: {$time->getRefreshTime()}");
-
-// background color for body
-function getBgColor(): string
-{
-    $color = "";
-    if (isset($_GET["bg-color"])) {
-        $color = match ($_GET["bg-color"]) {
-            "Pink" => "Pink",
-            "Lavender" => "Lavender",
-            "LightYellow" => "LightYellow",
-            "PaleGreen" => "PaleGreen"
-        };
-        setcookie("bg-color", $color, time() + 3600 * 24 * 7);
-    }
-    return $color;
+if (!isset($_SESSION["theme"])) {
+    $_SESSION["theme"] = "lite";
 }
 
+if (isset($_GET["theme"])) {
+    $_SESSION["theme"] = $_GET["theme"];
+}
 ?>
 
 <!doctype html>
@@ -40,16 +19,18 @@ function getBgColor(): string
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="src/styles/styles.css">
+    <link rel="stylesheet" href="src/styles/slideon.css">
     <link rel="stylesheet" href="src/styles/flex-grid.css">
+    <link rel="stylesheet" href="src/styles/switchBtn.css">
     <link rel="stylesheet" href="src/styles/adaptive_360.css">
     <link rel="stylesheet" href="src/styles/adaptive_361_576.css">
     <link rel="stylesheet" href="src/styles/adaptive_577_768.css">
     <link rel="stylesheet" href="src/styles/adaptive_769_1200.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="app/js/scroll.js"></script>
+    <script src="app/js/themeToggle.js"></script>
 </head>
-<body id="top" class="<?php echo $themeToggle->getThemeClass(); ?>"
-      style="<?php echo "background: " . (isset($_GET["bg-color"]) ? getBgColor() : $_COOKIE["bg-color"]) ?>">
+<body id="top" class="<?php echo $_SESSION["theme"] ?>">
 <header class="header">
     <div class="logo"></div>
     <div class="link">
@@ -64,18 +45,14 @@ function getBgColor(): string
     <div class="link">
         <a class="header-link" href="app/php/registration.php">Регистрация</a>
     </div>
-    <div class="sl-link">
-        <form>
-            <label>Цвет фона
-                <select name="bg-color">
-                    <option value="Pink">Pink</option>
-                    <option value="Lavender">Lavender</option>
-                    <option value="LightYellow">LightYellow</option>
-                    <option value="PaleGreen">PaleGreen</option>
-                </select>
+    <div class="container_btn">
+        <img class="theme-icon" src="src/images/icons/day-and-night_<?php echo $_SESSION["theme"] ?>.png" alt="">
+        <div class="switch-btn">
+            <label class="switch">
+                <input id="toggleswitch" type="checkbox">
+                <span class="slider round"></span>
             </label>
-            <input type="submit" value="Применить">
-        </form>
+        </div>
     </div>
 </header>
 <div class="main">
