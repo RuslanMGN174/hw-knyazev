@@ -1,11 +1,10 @@
 window.onload = function () {
-    console.log("DOM fully loaded and parsed")
+    console.log("DOM fully loaded")
 
-    const page = document.querySelector('body');
     const themeButton = document.querySelector('#toggleswitch');
-    let currTheme = "";
-    let theme = "";
+    const page = document.querySelector('body');
     const img = document.querySelector('.theme-icon');
+    let currTheme = "";
 
     const handleClick = () => {
         currTheme = page.getAttribute("class");
@@ -16,8 +15,8 @@ window.onload = function () {
             ? "src/images/icons/day-and-night_lite.png"
             : "src/images/icons/day-and-night_dark-theme.png";
 
-        theme = currTheme === "dark-theme" ? "lite" : "dark-theme";
-        saveThemeToSession(theme);
+        currTheme = currTheme === "dark-theme" ? "lite" : "dark-theme";
+        saveThemeToSession(currTheme);
     }
 
     themeButton.addEventListener("click", handleClick)

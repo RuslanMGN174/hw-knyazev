@@ -2,13 +2,17 @@
 session_start();
 require_once("../vendor/autoload.php");
 
-if (!isset($_SESSION["theme"])) {
+if (!isset($_SESSION["theme"]) && !isset($_SESSION["toggleswitch"])) {
     $_SESSION["theme"] = "lite";
+    $_SESSION["check"] = "";
 }
 
 if (isset($_GET["theme"])) {
     $_SESSION["theme"] = $_GET["theme"];
 }
+
+$_SESSION["check"] = $_SESSION["theme"] == "lite" ? "" : "checked";
+
 ?>
 
 <!doctype html>
@@ -19,7 +23,6 @@ if (isset($_GET["theme"])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="src/styles/styles.css">
-    <link rel="stylesheet" href="src/styles/slideon.css">
     <link rel="stylesheet" href="src/styles/flex-grid.css">
     <link rel="stylesheet" href="src/styles/switchBtn.css">
     <link rel="stylesheet" href="src/styles/adaptive_360.css">
@@ -49,7 +52,7 @@ if (isset($_GET["theme"])) {
         <img class="theme-icon" src="src/images/icons/day-and-night_<?php echo $_SESSION["theme"] ?>.png" alt="">
         <div class="switch-btn">
             <label class="switch">
-                <input id="toggleswitch" type="checkbox">
+                <input id="toggleswitch" type="checkbox" <?php echo $_SESSION["check"] ?>>
                 <span class="slider round"></span>
             </label>
         </div>
