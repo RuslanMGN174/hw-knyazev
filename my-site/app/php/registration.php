@@ -1,3 +1,13 @@
+<?php
+
+if ($_FILES && $_FILES["avatar"]["error"] == UPLOAD_ERR_OK) {
+    $extension = mb_substr($_FILES["avatar"]["name"], -4, 4);
+    $name = "../../src/images/avatar" . $extension;
+    move_uploaded_file($_FILES["avatar"]["tmp_name"], $name);
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,7 +29,7 @@
                         <div class="card-body p-5">
                             <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-                            <form>
+                            <form action="" enctype="multipart/form-data" method="post">
 
                                 <div class="form-outline mb-4">
                                     <input type="text" id="form3Example1cg" class="form-control form-control-lg"/>
@@ -41,9 +51,14 @@
                                     <label class="form-label" for="form3Example4cdg">Repeat your password</label>
                                 </div>
 
+                                <div class="form-outline mb-4">
+                                    <label for="avatarFile"></label>
+                                    <input type="file" class=".form-control-file" id="avatarFile"
+                                           accept="image/png,image/jpeg,image/bmp,image/gif" name="avatar">
+                                </div>
+
                                 <div class="d-flex justify-content-center">
-                                    <button type="button" class="btn btn-primary btn-block mb-4">Register
-                                    </button>
+                                    <input type="submit" class="btn btn-primary btn-block mb-4" value="Register">
                                 </div>
 
                                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
