@@ -53,32 +53,32 @@ session_destroy();
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                     <div class="card" style="border-radius: 15px;">
                         <div class="card-body p-5">
-                            <h2 class="text-uppercase text-center mb-5">Authorization</h2>
+                            <h2 class="text-uppercase text-center mb-5">Авторизация</h2>
 
                             <form action="" method="post">
 
                                 <div class="form-outline mb-4">
                                     <input type="text" id="form2Example1" class="form-control" name="login"/>
-                                    <label class="form-label" for="form2Example1">Login</label>
+                                    <label class="form-label" for="form2Example1">Логин</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <input type="password" id="form2Example2" class="form-control" name="password"/>
-                                    <label class="form-label" for="form2Example2">Password</label>
+                                    <label class="form-label" for="form2Example2">Пароль</label>
                                 </div>
 
                                 <div class="row mb-4">
 
                                     <div class="col">
-                                        <a href="#!">Forgot password?</a>
+                                        <a href="#!">Забыли пароль?</a>
                                     </div>
                                 </div>
 
                                 <input type="submit" class="btn btn-primary btn-block mb-4" name="submit"
-                                       value="Sign in">
+                                       value="Войти">
 
                                 <div class="text-center">
-                                    <p>Not a member? <a href="registration.php">Register</a></p>
+                                    <p>Нет аккаунта? <a href="registration.php">Зарегистрироваться</a></p>
                                 </div>
                             </form>
                             <div class="text-center">

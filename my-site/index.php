@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once("../vendor/autoload.php");
+//require_once("../vendor/autoload.php");
 
-if (!isset($_SESSION["theme"]) && !isset($_SESSION["toggleswitch"])) {
+if (!isset($_SESSION["theme"]) && !isset($_SESSION["check"])) {
     $_SESSION["theme"] = "lite";
     $_SESSION["check"] = "";
 }

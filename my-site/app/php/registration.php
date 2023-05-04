@@ -27,43 +27,45 @@ if ($_FILES && $_FILES["avatar"]["error"] == UPLOAD_ERR_OK) {
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                     <div class="card" style="border-radius: 15px;">
                         <div class="card-body p-5">
-                            <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+                            <h2 class="text-uppercase text-center mb-5">Создать аккаунт</h2>
 
                             <form action="" enctype="multipart/form-data" method="post">
 
                                 <div class="form-outline mb-4">
                                     <input type="text" id="form3Example1cg" class="form-control form-control-lg"/>
-                                    <label class="form-label" for="form3Example1cg">Your Name</label>
+                                    <label class="form-label" for="form3Example1cg">Имя</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <input type="text" id="form3Example3cg" class="form-control form-control-lg"/>
-                                    <label class="form-label" for="form3Example3cg">Your Email</label>
+                                    <label class="form-label" for="form3Example3cg">Электронная почта</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <input type="password" id="form3Example4cg" class="form-control form-control-lg"/>
-                                    <label class="form-label" for="form3Example4cg">Password</label>
+                                    <label class="form-label" for="form3Example4cg">Пароль</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <input type="password" id="form3Example4cdg" class="form-control form-control-lg"/>
-                                    <label class="form-label" for="form3Example4cdg">Repeat your password</label>
+                                    <label class="form-label" for="form3Example4cdg">Пароль (повторно)</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <label for="avatarFile"></label>
+                                    <label for="avatarFile">Загрузите свой аватар</label>
+                                </div>
+                                <div class="form-outline mb-4">
                                     <input type="file" class=".form-control-file" id="avatarFile"
                                            accept="image/png,image/jpeg,image/bmp,image/gif" name="avatar">
                                 </div>
 
                                 <div class="d-flex justify-content-center">
-                                    <input type="submit" class="btn btn-primary btn-block mb-4" value="Register">
+                                    <input type="submit" class="btn btn-primary btn-block mb-4" value="Отправить">
                                 </div>
 
-                                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
+                                <p class="text-center text-muted mt-5 mb-0">Уже есть аккаунт? <a
                                             href="authorization.php"
-                                            class="fw-bold text-body"><u>Login here</u></a></p>
+                                            class="fw-bold text-body"><u>Войти</u></a></p>
 
                             </form>
 
