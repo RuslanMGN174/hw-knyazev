@@ -2,6 +2,7 @@
 
 if ($_FILES && $_FILES["avatar"]["error"] == UPLOAD_ERR_OK) {
     $extension = mb_substr($_FILES["avatar"]["name"], -4, 4);
+    $extension = $extension == "jpeg" ? ".jpeg" : $extension;
     $name = "../../src/images/avatar" . $extension;
     move_uploaded_file($_FILES["avatar"]["tmp_name"], $name);
 }
@@ -32,23 +33,29 @@ if ($_FILES && $_FILES["avatar"]["error"] == UPLOAD_ERR_OK) {
                             <form action="" enctype="multipart/form-data" method="post">
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg"/>
-                                    <label class="form-label" for="form3Example1cg">Имя</label>
+                                    <input type="text" name="userName" id="userName"
+                                           class="form-control form-control-lg"
+                                           required/>
+                                    <label class="form-label" for="userName">Имя</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="form3Example3cg" class="form-control form-control-lg"/>
-                                    <label class="form-label" for="form3Example3cg">Электронная почта</label>
+                                    <input type="text" name="email" id="email" class="form-control form-control-lg"
+                                           required/>
+                                    <label class="form-label" for="email">Электронная почта</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="form3Example4cg" class="form-control form-control-lg"/>
-                                    <label class="form-label" for="form3Example4cg">Пароль</label>
+                                    <input type="password" name="password" id="password"
+                                           class="form-control form-control-lg"
+                                           required/>
+                                    <label class="form-label" for="password">Пароль</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg"/>
-                                    <label class="form-label" for="form3Example4cdg">Пароль (повторно)</label>
+                                    <input type="password" id="passRepeat" class="form-control form-control-lg"
+                                           required/>
+                                    <label class="form-label" for="passRepeat">Пароль (повторно)</label>
                                 </div>
 
                                 <div class="form-outline mb-4">

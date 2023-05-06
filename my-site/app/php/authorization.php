@@ -5,8 +5,8 @@ session_start();
 $usersArray = ["John" => md5("123"), "Bill" => md5("234")];
 
 // проверяем соответствие введенного логина и пароля с данными в массиве
-if (isset($_POST["login"]) && isset($_POST["password"])) {
-    $login = $_POST["login"];
+if (isset($_POST["email"]) && isset($_POST["password"])) {
+    $login = $_POST["email"];
     $pass = md5($_POST["password"]);
     if (array_key_exists($login, $usersArray) && $usersArray[$login] == $pass) {
         $_POST["password"] = $pass;
@@ -28,9 +28,6 @@ if (isset($_GET["act"])) {
     header("Location: $url");
     exit();
 }
-
-// удаляем сессию при помощи специальной функции
-session_destroy();
 
 ?>
 
@@ -58,8 +55,8 @@ session_destroy();
                             <form action="" method="post">
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="form2Example1" class="form-control" name="login"/>
-                                    <label class="form-label" for="form2Example1">Логин</label>
+                                    <input type="text" id="email" class="form-control" name="email"/>
+                                    <label class="form-label" for="email">Email</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
