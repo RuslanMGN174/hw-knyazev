@@ -1,12 +1,41 @@
 <?php
 
+session_start();
+
+// устанавливаем соединение с БД
+$link = mysqli_connect("127.0.0.1", "Knyazev_stud", "root", "fact_hw");
+$email = "";
+
+if (isset($_POST["password"])) {
+    $name = $_POST["userName"];
+    $email = $_POST["email"];
+
+    // шифруем пароль
+    $pass = md5($_POST["password"]);
+
+    //сохраняем email в сессию
+    $_SESSION["emailValue"] = $email;
+
+    // запрос на добавление данных формы в БД
+    $sql = "INSERT INTO `users` (`name`, `email`, `pass`) VALUES ('$name', LOWER('$email'), '$pass')";
+
+    // исполнение запроса
+    $result = $link->query($sql);
+
+    header("Location: http://hw-knyazev/my-site/app/php/authorization.php");
+
+}
+
+// добавление аватарки
 if ($_FILES && $_FILES["avatar"]["error"] == UPLOAD_ERR_OK) {
     $extension = mb_substr($_FILES["avatar"]["name"], -4, 4);
     $extension = $extension == "jpeg" ? ".jpeg" : $extension;
-    $name = "../../src/images/avatar" . $extension;
+
+    // добавляем к имени аватарки email
+    $name = "../../src/images/avatar($email)" . $extension;
+
     move_uploaded_file($_FILES["avatar"]["tmp_name"], $name);
 }
-
 ?>
 
 <!doctype html>

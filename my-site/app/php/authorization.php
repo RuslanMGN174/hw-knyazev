@@ -2,19 +2,28 @@
 
 session_start();
 
-$usersArray = ["John" => md5("123"), "Bill" => md5("234")];
+$authStatus = "";
+$emailValue = $_SESSION["emailValue"] ?? "";
 
-// проверяем соответствие введенного логина и пароля с данными в массиве
+$link = mysqli_connect("127.0.0.1", "Knyazev_stud", "root", "fact_hw");
+
 if (isset($_POST["email"]) && isset($_POST["password"])) {
-    $login = $_POST["email"];
+
+    // переводим почту в нижний регистр и шифруем пароль
+    $email = strtolower($_POST["email"]);
     $pass = md5($_POST["password"]);
-    if (array_key_exists($login, $usersArray) && $usersArray[$login] == $pass) {
-        $_POST["password"] = $pass;
-        header('Location: ' . 'sayHello.php?login=' . $login);
+
+    // sql запрос на получение данных из БД по email
+    $sql = "SELECT * FROM `users` WHERE LOWER(email = '$email')";
+
+    // исполняем запрос и переводим результат в массив
+    $arr_db_result = mysqli_fetch_array($link->query($sql));
+
+// проверяем соответствие введенного логина и пароля с БД
+    if ($email == $arr_db_result["email"] && $pass == $arr_db_result["pass"]) {
+        header('Location: ' . 'sayHello.php?login=' . $arr_db_result["name"]);
     } else {
-        echo "<b>Логин или пароль указаны не верно</b>";
-        echo "<br>";
-        echo "<br>";
+        $authStatus = "Логин или пароль указаны не верно";
     }
 }
 
@@ -28,6 +37,8 @@ if (isset($_GET["act"])) {
     header("Location: $url");
     exit();
 }
+
+session_destroy();
 
 ?>
 
@@ -53,14 +64,16 @@ if (isset($_GET["act"])) {
                             <h2 class="text-uppercase text-center mb-5">Авторизация</h2>
 
                             <form action="" method="post">
-
+                                <span style="color: red"><?php echo $authStatus ?></span>
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="email" class="form-control" name="email"/>
-                                    <label class="form-label" for="email">Email</label>
+                                    <input type="text" id="form2Example1" class="form-control" name="email" required
+                                           value="<?php echo $emailValue ?>"/>
+                                    <label class="form-label" for="form2Example1">Email</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="form2Example2" class="form-control" name="password"/>
+                                    <input type="password" id="form2Example2" class="form-control" name="password"
+                                           required/>
                                     <label class="form-label" for="form2Example2">Пароль</label>
                                 </div>
 
