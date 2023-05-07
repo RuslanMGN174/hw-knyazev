@@ -63,7 +63,9 @@ if (isset($_GET["act"])) {
                             <h2 class="text-uppercase text-center mb-5">Авторизация</h2>
 
                             <form action="" method="post">
+
                                 <span class="text-center" style="color: red"><?php echo $authStatus ?></span>
+
                                 <div class="form-outline mb-4">
                                     <input type="text" id="email" class="form-control" name="email" required
                                            value="<?php echo $emailValue ?>"/>
@@ -77,7 +79,6 @@ if (isset($_GET["act"])) {
                                 </div>
 
                                 <div class="row mb-4">
-
                                     <div class="col">
                                         <a href="forgotPass.php">Забыли пароль?</a>
                                     </div>
