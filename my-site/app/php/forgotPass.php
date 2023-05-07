@@ -101,15 +101,7 @@ if (isset($_POST["password"]) && isset($_POST["password2"])) {
 
                                 <input type="submit" class="btn btn-primary btn-block mb-4" name="submit"
                                        value="Применить">
-
-                                <div class="text-center">
-                                    <p>Нет аккаунта? <a href="registration.php">Зарегистрироваться</a></p>
-                                </div>
                             </form>
-                            <div class="text-center">
-                                <a href="?act=fact">Факт Академия</a>
-                                <a href="?act=bitrix">Bitrix24</a>
-                            </div>
                         </div>
                     </div>
                 </div>

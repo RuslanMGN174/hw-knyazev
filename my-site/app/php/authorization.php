@@ -91,10 +91,6 @@ if (isset($_GET["act"])) {
                                     <p>Нет аккаунта? <a href="registration.php">Зарегистрироваться</a></p>
                                 </div>
                             </form>
-                            <div class="text-center">
-                                <a href="?act=fact">Факт Академия</a>
-                                <a href="?act=bitrix">Bitrix24</a>
-                            </div>
                         </div>
                     </div>
                 </div>
