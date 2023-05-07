@@ -2,10 +2,11 @@
 
 session_start();
 
+require_once "connect.php";
+
 $authStatus = "";
 $emailValue = $_SESSION["emailValue"] ?? "";
-
-$link = mysqli_connect("127.0.0.1", "Knyazev_stud", "root", "fact_hw");
+$link = Connect::getLink();
 
 if (isset($_POST["email"]) && isset($_POST["password"])) {
 
@@ -38,8 +39,6 @@ if (isset($_GET["act"])) {
     exit();
 }
 
-session_destroy();
-
 ?>
 
 <!doctype html>
@@ -64,23 +63,23 @@ session_destroy();
                             <h2 class="text-uppercase text-center mb-5">Авторизация</h2>
 
                             <form action="" method="post">
-                                <span style="color: red"><?php echo $authStatus ?></span>
+                                <span class="text-center" style="color: red"><?php echo $authStatus ?></span>
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="form2Example1" class="form-control" name="email" required
+                                    <input type="text" id="email" class="form-control" name="email" required
                                            value="<?php echo $emailValue ?>"/>
-                                    <label class="form-label" for="form2Example1">Email</label>
+                                    <label class="form-label" for="email">Email</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="form2Example2" class="form-control" name="password"
+                                    <input type="password" id="password" class="form-control" name="password"
                                            required/>
-                                    <label class="form-label" for="form2Example2">Пароль</label>
+                                    <label class="form-label" for="password">Пароль</label>
                                 </div>
 
                                 <div class="row mb-4">
 
                                     <div class="col">
-                                        <a href="#!">Забыли пароль?</a>
+                                        <a href="forgotPass.php">Забыли пароль?</a>
                                     </div>
                                 </div>
 

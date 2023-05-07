@@ -2,9 +2,10 @@
 
 session_start();
 
-// устанавливаем соединение с БД
-$link = mysqli_connect("127.0.0.1", "Knyazev_stud", "root", "fact_hw");
+require_once "connect.php";
+
 $email = "";
+$link = Connect::getLink();
 
 if (isset($_POST["password"])) {
     $name = $_POST["userName"];
@@ -32,7 +33,7 @@ if ($_FILES && $_FILES["avatar"]["error"] == UPLOAD_ERR_OK) {
     $extension = $extension == "jpeg" ? ".jpeg" : $extension;
 
     // добавляем к имени аватарки email
-    $name = "../../src/images/avatar($email)" . $extension;
+    $name = "../../src/images/avatars/pic($email)" . $extension;
 
     move_uploaded_file($_FILES["avatar"]["tmp_name"], $name);
 }
