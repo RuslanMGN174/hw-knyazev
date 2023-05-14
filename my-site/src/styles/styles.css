@@ -9,12 +9,12 @@
 }
 
 /*Темный режим на уровне операционной системы / браузера*/
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-color: #2d2e2a;
-        --ft-color: lightgray;
-    }
-}
+/*@media (prefers-color-scheme: dark) {*/
+/*    :root {*/
+/*        --bg-color: #2d2e2a;*/
+/*        --ft-color: lightgray;*/
+/*    }*/
+/*}*/
 
 body {
     display: grid;

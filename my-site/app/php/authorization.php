@@ -1,32 +1,29 @@
 <?php
 
+namespace App;
+
 session_start();
 
-$usersArray = ["John" => md5("123"), "Bill" => md5("234")];
+require_once "DbHandler.php";
 
-// проверяем соответствие введенного логина и пароля с данными в массиве
+$authStatus = "";
+$emailValue = $_SESSION["emailValue"] ?? "";
+$db = new DbHandler();
+
 if (isset($_POST["email"]) && isset($_POST["password"])) {
-    $login = $_POST["email"];
-    $pass = md5($_POST["password"]);
-    if (array_key_exists($login, $usersArray) && $usersArray[$login] == $pass) {
-        $_POST["password"] = $pass;
-        header('Location: ' . 'sayHello.php?login=' . $login);
-    } else {
-        echo "<b>Логин или пароль указаны не верно</b>";
-        echo "<br>";
-        echo "<br>";
-    }
-}
 
-// настройка реферера и куки
-if (isset($_GET["act"])) {
-    $url = match ($_GET["act"]) {
-        "fact" => "https://academy.fact.digital/",
-        "bitrix" => "https://www.bitrix24.ru/"
-    };
-    setcookie("lastVisitedSite", $url, time() + 3600);
-    header("Location: $url");
-    exit();
+    // переводим почту в нижний регистр и шифруем пароль
+    $email = strtolower($_POST["email"]);
+    $pass = md5($_POST["password"]);
+
+    $arr_db_result = $db->getUserByEmail($email);
+
+    // проверяем соответствие введенного логина и пароля с БД
+    if ($email == $arr_db_result["email"] && $pass == $arr_db_result["pass"]) {
+        header('Location: ' . 'sayHello.php?login=' . $arr_db_result["name"]);
+    } else {
+        $authStatus = "Логин или пароль указаны не верно";
+    }
 }
 
 ?>
@@ -54,20 +51,23 @@ if (isset($_GET["act"])) {
 
                             <form action="" method="post">
 
+                                <span class="text-center" style="color: red"><?php echo $authStatus ?></span>
+
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="email" class="form-control" name="email"/>
+                                    <input type="text" id="email" class="form-control" name="email" required
+                                           value="<?php echo $emailValue ?>"/>
                                     <label class="form-label" for="email">Email</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="form2Example2" class="form-control" name="password"/>
-                                    <label class="form-label" for="form2Example2">Пароль</label>
+                                    <input type="password" id="password" class="form-control" name="password"
+                                           required/>
+                                    <label class="form-label" for="password">Пароль</label>
                                 </div>
 
                                 <div class="row mb-4">
-
                                     <div class="col">
-                                        <a href="#!">Забыли пароль?</a>
+                                        <a href="forgotPass.php">Забыли пароль?</a>
                                     </div>
                                 </div>
 
@@ -78,10 +78,6 @@ if (isset($_GET["act"])) {
                                     <p>Нет аккаунта? <a href="registration.php">Зарегистрироваться</a></p>
                                 </div>
                             </form>
-                            <div class="text-center">
-                                <a href="?act=fact">Факт Академия</a>
-                                <a href="?act=bitrix">Bitrix24</a>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,7 @@
 <?php
 
-echo "<h2>Рады снова Вас видеть, " . $_GET["login"] . "!</h2>";
-echo "<h2>Последний посещенный сайт - " . $_COOKIE["lastVisitedSite"] . "</h2>";
+echo "<h2>Рады видеть Вас, " . $_GET["login"] . "!</h2>";
+
+if (isset($_COOKIE["lastVisitedSite"])){
+    echo "<h2>Последний посещенный сайт - " . $_COOKIE["lastVisitedSite"] . "</h2>";
+}
