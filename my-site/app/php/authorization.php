@@ -1,12 +1,14 @@
 <?php
 
+namespace App;
+
 session_start();
 
-require_once "connect.php";
+require_once "DbHandler.php";
 
 $authStatus = "";
 $emailValue = $_SESSION["emailValue"] ?? "";
-$link = Connect::getLink();
+$db = new DbHandler();
 
 if (isset($_POST["email"]) && isset($_POST["password"])) {
 
@@ -14,29 +16,14 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     $email = strtolower($_POST["email"]);
     $pass = md5($_POST["password"]);
 
-    // sql запрос на получение данных из БД по email
-    $sql = "SELECT * FROM `users` WHERE LOWER(email = '$email')";
+    $arr_db_result = $db->getUserByEmail($email);
 
-    // исполняем запрос и переводим результат в массив
-    $arr_db_result = mysqli_fetch_array($link->query($sql));
-
-// проверяем соответствие введенного логина и пароля с БД
+    // проверяем соответствие введенного логина и пароля с БД
     if ($email == $arr_db_result["email"] && $pass == $arr_db_result["pass"]) {
         header('Location: ' . 'sayHello.php?login=' . $arr_db_result["name"]);
     } else {
         $authStatus = "Логин или пароль указаны не верно";
     }
-}
-
-// настройка реферера и куки
-if (isset($_GET["act"])) {
-    $url = match ($_GET["act"]) {
-        "fact" => "https://academy.fact.digital/",
-        "bitrix" => "https://www.bitrix24.ru/"
-    };
-    setcookie("lastVisitedSite", $url, time() + 3600);
-    header("Location: $url");
-    exit();
 }
 
 ?>

@@ -1,23 +1,28 @@
 <?php
 
+namespace App;
+
 session_start();
 
-require_once "connect.php";
+require_once "DbHandler.php";
 
 $authStatus = "";
 $authStatusPass = "";
 $email = "";
+$db = new DbHandler();
+
+// Поля ввода пароля неактивны пока email не валидный
 $_SESSION["disabledPass"] = "disabled";
+
+// Цвет текста для сообщения
 $_SESSION["color"] = "";
+
 $_SESSION["emailValue"] = "";
-$link = Connect::getLink();
 
 if (isset($_POST["email"])) {
     $email = strtolower($_POST["email"]);
 
-    $sql = "SELECT * FROM `users` WHERE LOWER(email = '$email')";
-
-    $arr_db_result = mysqli_fetch_array($link->query($sql));
+    $arr_db_result = $db->getUserByEmail($email);
 
     if ($arr_db_result != null && $email == $arr_db_result["email"]) {
         $_SESSION["disabledPass"] = "";
@@ -29,18 +34,14 @@ if (isset($_POST["email"])) {
 }
 
 if (isset($_POST["password"]) && isset($_POST["password2"])) {
-    $password = $_POST["password"];
-    $password2 = $_POST["password2"];
+    if ($_POST["password"] == $_POST["password2"]) {
+        $password = md5($_POST["password"]);
 
-    if ($password == $password2) {
-        $password = md5($password);
-
-        $sqlUpdate = "UPDATE `users` SET `pass`='$password' WHERE email = '$email'";
-        $result = $link->query($sqlUpdate);
+        $db->updateUserPassword($email, $password);
 
         header("Location: http://hw-knyazev/my-site/app/php/authorization.php");
     } else {
-        $authStatusPass = "Пароли не одинаковы, повторите ввод";
+        $authStatusPass = "Пароли не совпадают, повторите ввод";
     }
 }
 
@@ -92,15 +93,25 @@ if (isset($_POST["password"]) && isset($_POST["password2"])) {
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="password2" class="form-control" name="password2"
-                                           required <?php echo $_SESSION["disabledPass"] ?>/>
-                                    <label class="form-label" for="password2"
-                                           style="color: <?php echo $_SESSION["color"] ?>">Повторите новый
-                                        пароль</label>
+                                    <input type="password"
+                                           id="password2"
+                                           class="form-control"
+                                           name="password2"
+                                           required
+                                        <?php echo $_SESSION["disabledPass"] ?>
+                                    />
+                                    <label class="form-label"
+                                           for="password2"
+                                           style="color: <?php echo $_SESSION["color"] ?>"
+                                    >Повторите новый пароль
+                                    </label>
                                 </div>
 
-                                <input type="submit" class="btn btn-primary btn-block mb-4" name="submit"
-                                       value="Применить">
+                                <input type="submit"
+                                       class="btn btn-primary btn-block mb-4"
+                                       name="submit"
+                                       value="Применить"
+                                >
                             </form>
                         </div>
                     </div>

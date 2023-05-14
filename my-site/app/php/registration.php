@@ -1,30 +1,36 @@
 <?php
 
+namespace App;
+
 session_start();
 
-require_once "connect.php";
+require_once "DbHandler.php";
 
 $email = "";
-$link = Connect::getLink();
+$equalsPass = "";
+$db = new DbHandler();
 
-if (isset($_POST["password"])) {
-    $name = $_POST["userName"];
-    $email = $_POST["email"];
+if (isset($_POST["passRepeat"])) {
+    $password = $_POST["password"];
+    $password2 = $_POST["passRepeat"];
 
-    // шифруем пароль
-    $pass = md5($_POST["password"]);
+    if ($password == $password2) {
+        $name = $_POST["userName"];
+        $email = $_POST["email"];
 
-    //сохраняем email в сессию
-    $_SESSION["emailValue"] = $email;
+        // шифруем пароль
+        $pass = md5($_POST["password"]);
 
-    // запрос на добавление данных формы в БД
-    $sql = "INSERT INTO `users` (`name`, `email`, `pass`) VALUES ('$name', LOWER('$email'), '$pass')";
+        // сохраняем email в сессию
+        $_SESSION["emailValue"] = $email;
 
-    // исполнение запроса
-    $result = $link->query($sql);
+        // добавляем нового пользователя в БД
+        $db->insertUser($name, $email, $pass);
 
-    header("Location: http://hw-knyazev/my-site/app/php/authorization.php");
-
+        header("Location: http://hw-knyazev/my-site/app/php/authorization.php");
+    } else {
+        $equalsPass = "Пароли не совпадают, повторите ввод";
+    }
 }
 
 // добавление аватарки
@@ -72,14 +78,16 @@ if ($_FILES && $_FILES["avatar"]["error"] == UPLOAD_ERR_OK) {
                                     <label class="form-label" for="email">Электронная почта</label>
                                 </div>
 
+                                <div class="text-center" style="color: red"><?php echo $equalsPass ?></div>
                                 <div class="form-outline mb-4">
                                     <input type="password" name="password" id="password" class="form-control" required/>
                                     <label class="form-label" for="password">Пароль</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="passRepeat" class="form-control" required/>
-                                    <label class="form-label" for="passRepeat">Пароль (повторно)</label>
+                                    <input type="password" name="passRepeat" id="passRepeat" class="form-control"
+                                           required/>
+                                    <label class="form-label" for="passRepeat">Пароль (повторно)
                                 </div>
 
                                 <div class="form-outline mb-4">
