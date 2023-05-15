@@ -81,16 +81,12 @@ class DbHandler
         $this->init($sql);
     }
 
-    public function getUserByEmail($email, $mode = PDO::FETCH_ASSOC): array
+    public function getUserByEmail($email, $mode = PDO::FETCH_ASSOC): array | bool
     {
         $sql = "SELECT * FROM `users` WHERE LOWER(email = '$email')";
         $this->init($sql);
 
-        if ($this->statement->fetch($mode)) {
-            return $this->statement->fetch($mode);
-        } else {
-            return [];
-        }
+        return $this->statement->fetch($mode);
     }
 
     public function updateUserPassword($userEmail, $password): void
