@@ -85,7 +85,12 @@ class DbHandler
     {
         $sql = "SELECT * FROM `users` WHERE LOWER(email = '$email')";
         $this->init($sql);
-        return $this->statement->fetch($mode);
+
+        if ($this->statement->fetch($mode)) {
+            return $this->statement->fetch($mode);
+        } else {
+            return [];
+        }
     }
 
     public function updateUserPassword($userEmail, $password): void
